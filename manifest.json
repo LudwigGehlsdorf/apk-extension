@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "Systembolaget APK",
+    "version": "1.0",
+    "description": "Beräknar APK för produkten på Systembolaget",
+
+    "content_scripts": [{
+      "js": ["scripts/contentscript.js"],
+      "matches": [
+        "https://www.systembolaget.se/*"
+      ]
+    }]
+}

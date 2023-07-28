@@ -20,46 +20,37 @@ const ParseVolume = (string) => {
     return parseInt(string)
 }
 
-const CreateAPKElement = (apk) => {
+const createApkElement = () => {
     const p = document.createElement("p")
     p.className = "css-17i0p8n enp2lf70"
     p.id = "apk"
-    p.innerHTML = apk
     return p
 }
 
 //Gör om så att den tar med antal liter man kan dricka som mest på en kväll, cirka 2.
 
 const CalculateAPK = () => {
-    const htmlPrice = document.querySelector(".css-1nhmy2u.enp2lf70").innerHTML
-    const htmlVolume = document.querySelectorAll(".css-1m85ili.er6ap680")[1].innerHTML
-    const htmlAlcoholpercentage = document.querySelectorAll(".css-1m85ili.er6ap680")[2].innerHTML
-    
-    const price = ParsePrice(htmlPrice)
-    const volume = ParseVolume(htmlVolume)
-    const alcoholpercentage = ParseAlcoholPercentage(htmlAlcoholpercentage)
+    const percentage = document.querySelectorAll(".css-1yfm6cm.e3whs8q0")[0].lastChild.innerHTML
+    const costPerLitre = document.querySelectorAll(".css-1xe6xc1.e3whs8q0")[0].children[1].innerHTML
 
-    const apk = (volume * alcoholpercentage) / price
-    const rounded = Math.round(apk * 100) / 100 
-    
-    return rounded + " mlA / kr"
+    const apk = ParseAlcoholPercentage(percentage) * 1 / ParsePrice(costPerLitre) * 1000
+
+    const rounded = Math.round(apk * 100) / 100
+    return rounded
 }
 
 const ModifyDOM = () => {
-    let apkElement = document.querySelector("#apk")
-    if (apkElement != null) {
-        apkElement.innerHTML = CalculateAPK()
-    } else {
-        apkElement = CreateAPKElement(CalculateAPK())
-        const divContainer = document.querySelector(".css-1df247k.e3whs8q0")
-        const priceElement = divContainer.childNodes[0]
-        const buffer = divContainer.removeChild(priceElement)
-    
-        const apkContainer = document.createElement("div")
-        apkContainer.appendChild(priceElement)
-        apkContainer.appendChild(apkElement)
-        divContainer.prepend(apkContainer)
-    }
+    let apkElement = document.querySelector("#apk") || createApkElement()
+    apkElement.innerHTML = CalculateAPK() + " mlA / kr"
+    console.log(CalculateAPK())
+    const divContainer = document.querySelector(".css-1df247k.e3whs8q0")
+    const priceElement = divContainer.childNodes[0]
+    const buffer = divContainer.removeChild(priceElement)
+
+    const apkContainer = document.createElement("div")
+    apkContainer.appendChild(priceElement)
+    apkContainer.appendChild(apkElement)
+    divContainer.prepend(apkContainer)
 }
 
 //gör så att det visas på sortiment sidan också på varje label

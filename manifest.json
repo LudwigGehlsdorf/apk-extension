@@ -1,13 +1,31 @@
 {
     "manifest_version": 3,
     "name": "Systembolaget APK",
-    "version": "1.0",
+    "version": "0.1",
     "description": "Beräknar APK för produkten på Systembolaget",
-
+    "icons": {
+      "16": "assets/icon16.png",
+      "32": "assets/icon32.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    },
+    "author": "ludwig.gehlsdorf@gmail.com",
+    "background": {
+      "service_worker": "scripts/service-worker.js"
+    },
     "content_scripts": [{
-      "js": ["scripts/contentscript.js"],
+      "js": [ 
+        "scripts/helpers.js",
+        "scripts/assortmentPage.js", 
+        "scripts/productPage.js", 
+        "scripts/pushStateObserver.js", 
+        "scripts/script-handler.js"
+      ],
       "matches": [
         "https://www.systembolaget.se/*"
       ]
-    }]
+    }],
+    "permissions": [
+      "webNavigation", "scripting", "activeTab", "tabs"
+    ]
 }

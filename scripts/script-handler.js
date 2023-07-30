@@ -1,15 +1,16 @@
-const urlConfigs = [
+const apkConfigs = [
     {
         url: "https://www.systembolaget.se/produkt/*/",
         roots: [
             document.body
         ],
-        config: {
-            PRICE_SELECTOR: ".css-1nhmy2u.enp2lf70",
-            VOLUME_SELECTOR: ".css-1yfm6cm.e3whs8q0 :nth-child(3)",
-            PERCENTAGE_SELECTOR: ".css-1yfm6cm.e3whs8q0 :nth-child(5)",
-            STYLING_CLASS: "css-17i0p8n",
+        selectors: {
+            PRICE: ".css-1nhmy2u.enp2lf70",
+            VOLUME: ".css-1yfm6cm.e3whs8q0 :nth-child(3)",
+            PERCENTAGE: ".css-1yfm6cm.e3whs8q0 :nth-child(5)",
 
+            PRICE_PER_LITRE: ".css-17i0p8n.enp2lf70",
+            PERCENTAGE: ".css-1yfm6cm.e3whs8q0 p"
         }
     },
     {
@@ -17,11 +18,15 @@ const urlConfigs = [
         roots: [
             ...document.querySelectorAll(".css-1lc3wed.enuzix00")
         ],
-        config: {
-            PRICE_SELECTOR: ".css-tny168.enp2lf70",
-            VOLUME_SELECTOR: ".css-5aqtg5.e3whs8q0 div:nth-child(2) p",
-            PERCENTAGE_SELECTOR: ".css-5aqtg5.e3whs8q0 div:nth-child(3) p",
+        selectors: {
+            PRICE: ".css-tny168.enp2lf70",
+            VOLUME: ".css-5aqtg5.e3whs8q0 div:nth-child(2) p",
+            PERCENTAGE: ".css-5aqtg5.e3whs8q0 div:nth-child(3) p",
             STYLING_CLASS: "css-pvyy3n"
+        }
+        ,
+        apkFunction: {
+
         }
     }
 ]
@@ -35,11 +40,10 @@ const stateCallback = (mutationsList, observer) => {
 
     observer.disconnect()
 
-    urlConfigs.forEach(({url, roots, config}) => {
+    apkConfigs.forEach(({url, roots, config}) => {
         if (urlMatcher(currentURL, url)) {
             updateAPK(roots, config)
         }
-
     }) 
 
     observer.observe(targetNode, config)

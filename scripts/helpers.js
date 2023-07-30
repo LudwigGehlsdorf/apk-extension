@@ -9,7 +9,10 @@ function urlMatcher (currentURL, urlRule) {
 }
 
 //Millileter pure alcohol per currency
-function calculateAPK(percentage, volume, price) {
+function calculateAPK(percentage, volume, price, opts) {
+    if (opts['pricePerLitre']) {
+        return 10 * percentage / opts['costPerLitre'] 
+    }
     console.log(percentage, volume, price)
     return volume * percentage / price
 }

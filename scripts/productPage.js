@@ -17,6 +17,7 @@ function updateAPK(roots, config) {
     for (let root of roots) {
         try {
             const apkElement = root.querySelector(".apk") || appendAPK(root, config)
+            
             const price = parseNumber(root.querySelector(config.PRICE_SELECTOR).innerHTML, ":")
             const volume = parseNumber(root.querySelector(config.VOLUME_SELECTOR).innerHTML)
             const percentage = parseNumber(root.querySelector(config.PERCENTAGE_SELECTOR).innerHTML) * 0.01
@@ -30,3 +31,5 @@ function updateAPK(roots, config) {
         }
     }
 }
+
+function getAPK(config)

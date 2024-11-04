@@ -8,9 +8,9 @@ const apkConfigs = [
             PRICE: ".css-1nhmy2u.enp2lf70",
             VOLUME: ".css-1yfm6cm.e3whs8q0 :nth-child(3)",
             PERCENTAGE: ".css-1yfm6cm.e3whs8q0 :nth-child(5)",
-
+            STYLING_CLASS: "css-pvyy3n",
             PRICE_PER_LITRE: ".css-17i0p8n.enp2lf70",
-            PERCENTAGE: ".css-1yfm6cm.e3whs8q0 p"
+            //PERCENTAGE: ".css-1yfm6cm.e3whs8q0 p"
         }
     },
     {
@@ -24,10 +24,6 @@ const apkConfigs = [
             PERCENTAGE: ".css-5aqtg5.e3whs8q0 div:nth-child(3) p",
             STYLING_CLASS: "css-pvyy3n"
         }
-        ,
-        apkFunction: {
-
-        }
     }
 ]
 
@@ -40,9 +36,9 @@ const stateCallback = (mutationsList, observer) => {
 
     observer.disconnect()
 
-    apkConfigs.forEach(({url, roots, config}) => {
+    apkConfigs.forEach(({url, roots, selectors}) => {
         if (urlMatcher(currentURL, url)) {
-            updateAPK(roots, config)
+            updateAPK(roots, selectors)
         }
     }) 
 

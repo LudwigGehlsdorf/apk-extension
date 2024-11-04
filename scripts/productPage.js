@@ -1,7 +1,7 @@
 function appendAPK(root, config) {
     const apk = document.createElement("p")
     apk.className = "apk " + config.STYLING_CLASS
-    const price = root.querySelector(config.PRICE_SELECTOR)
+    const price = root.querySelector(config.PRICE)
     const priceParent = price.parentNode
 
     priceParent.removeChild(price)
@@ -18,9 +18,9 @@ function updateAPK(roots, config) {
         try {
             const apkElement = root.querySelector(".apk") || appendAPK(root, config)
             
-            const price = parseNumber(root.querySelector(config.PRICE_SELECTOR).innerHTML, ":")
-            const volume = parseNumber(root.querySelector(config.VOLUME_SELECTOR).innerHTML)
-            const percentage = parseNumber(root.querySelector(config.PERCENTAGE_SELECTOR).innerHTML) * 0.01
+            const price = parseNumber(root.querySelector(config.PRICE).innerHTML, ":")
+            const volume = parseNumber(root.querySelector(config.VOLUME).innerHTML)
+            const percentage = parseNumber(root.querySelector(config.PERCENTAGE).innerHTML) * 0.01
         
             const apk = calculateAPK(percentage, volume, price)
             const rounded = Math.round(apk * 100) / 100
@@ -31,5 +31,3 @@ function updateAPK(roots, config) {
         }
     }
 }
-
-function getAPK(config)

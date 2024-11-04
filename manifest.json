@@ -16,9 +16,7 @@
     "content_scripts": [{
       "js": [ 
         "scripts/helpers.js",
-        "scripts/assortmentPage.js", 
         "scripts/productPage.js", 
-        "scripts/pushStateObserver.js", 
         "scripts/script-handler.js"
       ],
       "matches": [
